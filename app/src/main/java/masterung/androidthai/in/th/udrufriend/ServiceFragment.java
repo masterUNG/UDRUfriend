@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +42,11 @@ public class ServiceFragment extends Fragment {
     }
 
     private void createRecyclerView() {
-        RecyclerView recyclerView = getView().findViewById(R.id.recyclerViewFriend);
+        final RecyclerView recyclerView = getView().findViewById(R.id.recyclerViewFriend);
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,
+                LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+
         final String tag = "22novV1";
 
         final int[] countInts = new int[]{0};
@@ -72,6 +78,10 @@ public class ServiceFragment extends Fragment {
 
                 Log.d(tag, "displayNameArraylist ==> " + displayNameStringArrayList.toString());
                 Log.d(tag, "urlArrayList ==> " + urlAvataStringArrayList.toString());
+
+                FriendAdapter friendAdapter = new FriendAdapter(getActivity(), displayNameStringArrayList, urlAvataStringArrayList);
+                recyclerView.setAdapter(friendAdapter);
+
 
             }   // onDataChange
 
