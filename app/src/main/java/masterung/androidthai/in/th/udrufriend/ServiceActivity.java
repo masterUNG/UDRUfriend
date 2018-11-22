@@ -34,12 +34,16 @@ public class ServiceActivity extends AppCompatActivity {
 //        Create ListView
         createListView();
 
+        AddFragment(savedInstanceState);
+
+    }   // Main Method
+
+    private void AddFragment(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.layoutServiceFragment, new ServiceFragment()).commit();
         }
-
-    }   // Main Method
+    }
 
     private void createListView() {
         ListView listView = findViewById(R.id.listViewMenu);
@@ -54,8 +58,11 @@ public class ServiceActivity extends AppCompatActivity {
 
                 switch (position) {
                     case 0:
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.layoutServiceFragment, new ServiceFragment()).commit();
                         break;
                     case 1:
+                        startActivity(new Intent(ServiceActivity.this, MapsActivity.class));
                         break;
                     case 2:
                         break;
