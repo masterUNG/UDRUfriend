@@ -26,12 +26,14 @@
             android:scaleType="centerInside"
             android:id="@+id/imageViewAvata"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/avata"
+            android:src="@drawable/avata_final"
             android:layout_width="wrap_content"
             android:layout_height="150dp" />
 
         <!--Name-->
         <EditText
+            android:background="@drawable/name"
+            android:textSize="@dimen/h3"
             android:id="@+id/edtName"
             android:inputType="text"
             android:hint="Name :"
@@ -40,6 +42,8 @@
 
         <!--User-->
         <EditText
+            android:background="@drawable/email"
+            android:textSize="@dimen/h3"
             android:id="@+id/edtEmail"
             android:inputType="textEmailAddress"
             android:hint="@string/email"
@@ -48,6 +52,8 @@
 
         <!--Password-->
         <EditText
+            android:background="@drawable/password"
+            android:textSize="@dimen/h3"
             android:id="@+id/edtPassword"
             android:inputType="textPassword"
             android:hint="@string/password"
@@ -55,6 +61,8 @@
             android:layout_height="wrap_content" />
 
         <EditText
+            android:background="@drawable/password"
+            android:textSize="@dimen/h3"
             android:id="@+id/edtRePassword"
             android:inputType="textPassword"
             android:hint="Re-Password :"
