@@ -43,6 +43,10 @@ public class ServiceFragment extends Fragment {
         RecyclerView recyclerView = getView().findViewById(R.id.recyclerViewFriend);
         final String tag = "22novV1";
 
+        final int[] countInts = new int[]{0};
+        final ArrayList<String> displayNameStringArrayList = new ArrayList<>();
+        final ArrayList<String> urlAvataStringArrayList = new ArrayList<>();
+
 //        Get Value From Firebase
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference().child("User");
@@ -58,7 +62,16 @@ public class ServiceFragment extends Fragment {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     DatabaseModel databaseModel = dataSnapshot1.getValue(DatabaseModel.class);
                     databaseModelArrayList.add(databaseModel);
-                }
+
+                    DatabaseModel databaseModel1 = databaseModelArrayList.get(countInts[0]);
+                    countInts[0] += 1;
+                    displayNameStringArrayList.add(databaseModel1.getNameString());
+                    urlAvataStringArrayList.add(databaseModel1.getPathUrlString());
+
+                }   // for
+
+                Log.d(tag, "displayNameArraylist ==> " + displayNameStringArrayList.toString());
+                Log.d(tag, "urlArrayList ==> " + urlAvataStringArrayList.toString());
 
             }   // onDataChange
 
