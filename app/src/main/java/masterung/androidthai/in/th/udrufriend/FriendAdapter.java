@@ -18,15 +18,18 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.FriendView
 
     private Context context;
     private ArrayList<String> displayNameStringArrayList, pathUrlStringArrayList;
+    private OnClickItem onClickItem;
     private LayoutInflater layoutInflater;
 
     public FriendAdapter(Context context,
                          ArrayList<String> displayNameStringArrayList,
-                         ArrayList<String> pathUrlStringArrayList) {
+                         ArrayList<String> pathUrlStringArrayList,
+                         OnClickItem onClickItem) {
         this.layoutInflater = LayoutInflater.from(context);
         this.displayNameStringArrayList = displayNameStringArrayList;
         this.pathUrlStringArrayList = pathUrlStringArrayList;
-    }   // Constructor
+        this.onClickItem = onClickItem;
+    }
 
     @NonNull
     @Override
@@ -39,7 +42,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.FriendView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FriendViewHolder friendViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final FriendViewHolder friendViewHolder, int i) {
 
         String urlPathString = pathUrlStringArrayList.get(i);
         String displayNameString = displayNameStringArrayList.get(i);
@@ -50,6 +53,16 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.FriendView
                 .load(urlPathString)
                 .resize(100,100)
                 .into(friendViewHolder.circleImageView);
+
+        friendViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickItem.onClickItem(v, friendViewHolder.getAdapterPosition());
+            }
+        });
+
+
+
 
     }
 

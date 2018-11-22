@@ -52,6 +52,7 @@ public class ServiceFragment extends Fragment {
         final int[] countInts = new int[]{0};
         final ArrayList<String> displayNameStringArrayList = new ArrayList<>();
         final ArrayList<String> urlAvataStringArrayList = new ArrayList<>();
+        final ArrayList<String> uidFriendStringArrayList = new ArrayList<>();
 
 //        Get Value From Firebase
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -73,13 +74,20 @@ public class ServiceFragment extends Fragment {
                     countInts[0] += 1;
                     displayNameStringArrayList.add(databaseModel1.getNameString());
                     urlAvataStringArrayList.add(databaseModel1.getPathUrlString());
+                    uidFriendStringArrayList.add(databaseModel1.getUidString());
 
                 }   // for
 
                 Log.d(tag, "displayNameArraylist ==> " + displayNameStringArrayList.toString());
                 Log.d(tag, "urlArrayList ==> " + urlAvataStringArrayList.toString());
 
-                FriendAdapter friendAdapter = new FriendAdapter(getActivity(), displayNameStringArrayList, urlAvataStringArrayList);
+                FriendAdapter friendAdapter = new FriendAdapter(getActivity(),
+                        displayNameStringArrayList, urlAvataStringArrayList, new OnClickItem() {
+                    @Override
+                    public void onClickItem(View view, int position) {
+                        Log.d("22novV3", "You Click ==> " + uidFriendStringArrayList.get(position));
+                    }
+                });
                 recyclerView.setAdapter(friendAdapter);
 
 
