@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,7 +54,13 @@ public class ServiceFragment extends Fragment {
                 int i = (int) dataSnapshot.getChildrenCount();
                 Log.d(tag, "จำนวนของ User ==> " + i);
 
-            }
+                ArrayList<DatabaseModel> databaseModelArrayList = new ArrayList<>();
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    DatabaseModel databaseModel = dataSnapshot1.getValue(DatabaseModel.class);
+                    databaseModelArrayList.add(databaseModel);
+                }
+
+            }   // onDataChange
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
